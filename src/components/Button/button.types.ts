@@ -1,6 +1,6 @@
+import { ExtendedStyles } from "../../types/generalTypes";
+
 export interface PropsTypes {
-    extended_styles?: {
-        [key: string]: string;
-    };
-    children: string;
+  extended_styles?: ExtendedStyles;
+  children: string;
 }
