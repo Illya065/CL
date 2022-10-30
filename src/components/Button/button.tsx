@@ -39,10 +39,21 @@ const StyledButton = styled.button`
     extended_styles}
 `;
 
-const Button = ({ children, extended_styles }: PropsTypes): JSX.Element => {
+const Button = ({
+  children,
+  extended_styles,
+  onClick,
+  disabled,
+}: PropsTypes): JSX.Element => {
   return (
     <Wrapper>
-      <StyledButton extended_styles={extended_styles}>{children}</StyledButton>
+      <StyledButton
+        disabled={disabled}
+        onClick={onClick}
+        extended_styles={extended_styles}
+      >
+        {children}
+      </StyledButton>
     </Wrapper>
   );
 };
