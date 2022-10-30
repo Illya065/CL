@@ -1,21 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
 import { client } from "../../client/client";
+import {
+  TFunctionFetchCatBreedImages,
+  TFunctionHandleCatBreedChange,
+  TStateCatBreed,
+  TStateCatBreedImages,
+  TStateCatBreedsList,
+  TStateIsLoading,
+  TStatePage,
+} from "./types";
 
 export const useHomepage = () => {
-  const [catBreedsList, setCatBreedsList] = useState<
-    | {
-        name: string;
-        id: string | number;
-      }[]
-    | null
-  >(null);
-  const [catBreed, setCatBreed] = useState<string | null>(null);
-  const [breedImages, setBreedImages] = useState<
-    { url: string; breed_id: string }[]
-  >([]);
-  const [page, setPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [catBreedsList, setCatBreedsList] = useState<TStateCatBreedsList>(null);
+  const [catBreed, setCatBreed] = useState<TStateCatBreed>(null);
+  const [breedImages, setBreedImages] = useState<TStateCatBreedImages>([]);
+  const [page, setPage] = useState<TStatePage>(1);
+  const [isLoading, setIsLoading] = useState<TStateIsLoading>(false);
 
   useEffect(() => {
     fetchCatBreeds();
@@ -49,12 +50,9 @@ export const useHomepage = () => {
     catBreed: breed_id,
     breedImages: previous_images_array,
     page = 1,
-  }: {
-    catBreed: string;
-    breedImages?: { url: string; breed_id: string }[];
-    page?: number;
-  }) => {
+  }: TFunctionFetchCatBreedImages) => {
     setIsLoading(true);
+
     await client
       .get(`v1/images/search?breed_id=${breed_id}&page=${page}&limit=6`)
       .then((response) => {
@@ -85,7 +83,7 @@ export const useHomepage = () => {
   };
 
   const handleCatBreedChange = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
+    (event: TFunctionHandleCatBreedChange) => {
       if (event?.target?.value) {
         setCatBreed(event.target.value);
       }

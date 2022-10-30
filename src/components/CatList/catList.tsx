@@ -67,8 +67,6 @@ const CatList = ({ cats, extended_styles }: PropsTypes): JSX.Element => {
     cats?.length > 0 ? (
       <List extended_styles={extended_styles}>
         {cats.map((cat, index) => {
-          console.log(cat);
-
           return (
             <ListItem key={index}>
               <Image src={cat.url} alt="cat" />
