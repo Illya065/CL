@@ -11,6 +11,7 @@ import {
 import Text from "../Text";
 import { ExtendedStyles } from "../../types/generalTypes";
 import { PropsTypes } from "./catList.types";
+import { Link } from "react-router-dom";
 
 const List = styled.ul`
   display: grid;
@@ -31,26 +32,29 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  height: 350px;
+  height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
   @media (min-width: ${BREACKPOINTS.DESKTOP}) {
-    height: 300px;
+    height: 310px;
   }
 `;
 
 const Image = styled.img`
-  flex: 1;
   width: 100%;
-  /* height: 100%; */
   object-fit: cover;
-  margin-bottom: 1rem;
+  height: 320px;
+  box-sizing: border-box;
+
+  @media (min-width: ${BREACKPOINTS.DESKTOP}) {
+    height: 270px;
+  }
 `;
 
-const Link = styled.a`
+const LinkText = styled.p`
   display: inline-block;
   font-family: ${FONT_FAMILY.PRIMARY};
   font-weight: ${FONT_WEIGHT.FW_700};
@@ -70,8 +74,10 @@ const CatList = ({ cats, extended_styles }: PropsTypes): JSX.Element => {
           return (
             <ListItem key={index}>
               <Image src={cat.url} alt="cat" />
-              <Link href={`/single-cat-page/${cat.breed_id}`}>
-                View details
+              <Link
+                to={`/single-cat-page?breed_id=${cat.breed_id}&img_url=${cat.url}`}
+              >
+                <LinkText>View details</LinkText>
               </Link>
             </ListItem>
           );

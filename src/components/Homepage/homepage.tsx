@@ -14,20 +14,27 @@ const Homepage = (): JSX.Element => {
     breedImages,
     handleLoadMore,
     isLoading,
+    catBreed,
   } = talonProps;
 
   return (
     <Wrapper extended_styles={{ opacity: `${isLoading ? "0.5" : "1"}` }}>
       <PageTitle title="Homepage" />
-      <Selector onChange={handleCatBreedChange} options={catBreedsList} />
+      <Selector
+        value={catBreed}
+        onChange={handleCatBreedChange}
+        options={catBreedsList}
+      />
       <CatList cats={breedImages} />
-      <Button
-        disabled={isLoading}
-        onClick={handleLoadMore}
-        extended_styles={{ "margin-bottom": "2rem" }}
-      >
-        Load More
-      </Button>
+      {breedImages.length > 0 ? (
+        <Button
+          disabled={isLoading}
+          onClick={handleLoadMore}
+          extended_styles={{ "margin-bottom": "2rem" }}
+        >
+          Load More
+        </Button>
+      ) : null}
     </Wrapper>
   );
 };

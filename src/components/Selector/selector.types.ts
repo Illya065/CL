@@ -2,6 +2,7 @@ import { ExtendedStyles } from "../../types/generalTypes";
 
 export interface PropsTypes {
   extended_styles?: ExtendedStyles;
+  value: string | null;
   options:
     | {
         id: string | number;

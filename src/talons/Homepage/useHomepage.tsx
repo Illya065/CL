@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { client } from "../../client/client";
 import {
   TFunctionFetchCatBreedImages,
@@ -18,8 +18,17 @@ export const useHomepage = () => {
   const [page, setPage] = useState<TStatePage>(1);
   const [isLoading, setIsLoading] = useState<TStateIsLoading>(false);
 
+  const detailed_breed_info = sessionStorage.getItem("detailed_breed_info");
+
   useEffect(() => {
     fetchCatBreeds();
+    if (
+      !catBreed &&
+      detailed_breed_info &&
+      JSON.parse(detailed_breed_info)?.id
+    ) {
+      setCatBreed(JSON.parse(detailed_breed_info)?.id);
+    }
   }, []);
 
   useEffect(() => {
@@ -86,9 +95,28 @@ export const useHomepage = () => {
     (event: TFunctionHandleCatBreedChange) => {
       if (event?.target?.value) {
         setCatBreed(event.target.value);
+
+        const selectedBreed = catBreedsList?.find(
+          (item) => item.id === event.target.value
+        );
+
+        if (selectedBreed) {
+          document.title = `Cat Breeds - ${selectedBreed.name}`;
+          const detailed_breed_info = {
+            description: selectedBreed.description,
+            temperament: selectedBreed.temperament,
+            origin: selectedBreed.origin,
+            name: selectedBreed.name,
+            id: selectedBreed.id,
+          };
+          sessionStorage.setItem(
+            "detailed_breed_info",
+            JSON.stringify(detailed_breed_info)
+          );
+        }
       }
     },
-    []
+    [catBreedsList]
   );
 
   const handleLoadMore = useCallback(() => {
@@ -101,5 +129,6 @@ export const useHomepage = () => {
     breedImages,
     handleLoadMore,
     isLoading,
+    catBreed,
   };
 };
