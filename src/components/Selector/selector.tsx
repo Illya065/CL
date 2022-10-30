@@ -35,19 +35,28 @@ const StyledSelect = styled.select`
   background-color: ${COLORS.WHITE};
 `;
 
-const Selector = ({ options, extended_styles }: PropsTypes): JSX.Element => {
-  const options_list = options.map((option) => {
-    return (
-      <option key={option.value} value={option.value}>
-        {option.label}
-      </option>
-    );
-  });
+const Selector = ({
+  options,
+  extended_styles,
+  onChange,
+}: PropsTypes): JSX.Element => {
+  const options_list = options
+    ? options.map((option) => {
+        return (
+          <option key={option.id} value={option.id}>
+            {option.name}
+          </option>
+        );
+      })
+    : null;
 
   return (
     <Wrapper extended_styles={extended_styles}>
       <Label label="Breed" label_id="breed" />
-      <StyledSelect>{options_list}</StyledSelect>
+      <StyledSelect onChange={onChange}>
+        <option value={0}>None</option>
+        {options_list}
+      </StyledSelect>
     </Wrapper>
   );
 };

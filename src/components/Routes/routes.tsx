@@ -7,7 +7,10 @@ const Routes = (): JSX.Element => {
   return (
     <Switch>
       <Route path="/" element={<Homepage />}></Route>
-      <Route path="/single-cat-page" element={<SingleCatPage />}></Route>
+      <Route
+        path="/single-cat-page/:bread_id"
+        element={<SingleCatPage />}
+      ></Route>
     </Switch>
   );
 };
