@@ -39,6 +39,7 @@ const Selector = ({
   options,
   extended_styles,
   onChange,
+  value,
 }: PropsTypes): JSX.Element => {
   const options_list = options
     ? options.map((option) => {
@@ -53,7 +54,7 @@ const Selector = ({
   return (
     <Wrapper extended_styles={extended_styles}>
       <Label label="Breed" label_id="breed" />
-      <StyledSelect onChange={onChange}>
+      <StyledSelect onChange={onChange} value={value || 0}>
         <option value={0}>None</option>
         {options_list}
       </StyledSelect>

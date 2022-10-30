@@ -1,6 +1,9 @@
 export type TStateCatBreedsList =
   | {
       name: string;
+      description: string;
+      temperament: string;
+      origin: string;
       id: string | number;
     }[]
   | null;
