@@ -17,8 +17,21 @@ const Homepage = (): JSX.Element => {
     catBreed,
   } = talonProps;
 
+  const load_more_button: React.ReactNode | null =
+    breedImages.length > 0 ? (
+      <Button
+        disabled={isLoading}
+        onClick={handleLoadMore}
+        extended_styles={{ "margin-bottom": "2rem" }}
+      >
+        Load More
+      </Button>
+    ) : null;
+
+  const opacity_value: string = isLoading ? "0.5" : "1";
+
   return (
-    <Wrapper extended_styles={{ opacity: `${isLoading ? "0.5" : "1"}` }}>
+    <Wrapper extended_styles={{ opacity: opacity_value }}>
       <PageTitle title="Homepage" />
       <Selector
         value={catBreed}
@@ -26,15 +39,7 @@ const Homepage = (): JSX.Element => {
         options={catBreedsList}
       />
       <CatList cats={breedImages} />
-      {breedImages.length > 0 ? (
-        <Button
-          disabled={isLoading}
-          onClick={handleLoadMore}
-          extended_styles={{ "margin-bottom": "2rem" }}
-        >
-          Load More
-        </Button>
-      ) : null}
+      {load_more_button}
     </Wrapper>
   );
 };

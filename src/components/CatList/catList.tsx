@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import {
   BREACKPOINTS,
   COLORS,
@@ -8,10 +10,9 @@ import {
   FONT_WEIGHT,
   LINE_HEIGHT,
 } from "../../constants";
-import Text from "../Text";
 import { ExtendedStyles } from "../../types/generalTypes";
+import Text from "../Text";
 import { PropsTypes } from "./catList.types";
-import { Link } from "react-router-dom";
 
 const List = styled.ul`
   display: grid;
@@ -67,9 +68,11 @@ const LinkText = styled.p`
 `;
 
 const CatList = ({ cats, extended_styles }: PropsTypes): JSX.Element => {
-  const list =
-    cats?.length > 0 ? (
+  // Render a list of cats or a message if there are no cats
+  const cats_images_list: React.ReactNode =
+    cats && cats?.length > 0 ? (
       <List extended_styles={extended_styles}>
+        {/* Render cat image items */}
         {cats.map((cat, index) => {
           return (
             <ListItem key={index}>
@@ -91,7 +94,7 @@ const CatList = ({ cats, extended_styles }: PropsTypes): JSX.Element => {
       </Text>
     );
 
-  return list;
+  return cats_images_list;
 };
 
 export default CatList;

@@ -19,3 +19,12 @@ export type TFunctionFetchCatBreedImages = {
 };
 export type TFunctionHandleCatBreedChange =
   React.ChangeEvent<HTMLSelectElement>;
+
+export type TReturnTalon = {
+  catBreedsList: TStateCatBreedsList;
+  handleCatBreedChange: (event: TFunctionHandleCatBreedChange) => void;
+  breedImages: TStateCatBreedImages;
+  handleLoadMore: () => void;
+  isLoading: TStateIsLoading;
+  catBreed: TStateCatBreed;
+};

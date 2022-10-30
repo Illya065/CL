@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Create a new axios instance with a custom config
 export const client = axios.create({
   baseURL: "https://api.thecatapi.com/",
   headers: {
