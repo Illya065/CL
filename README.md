@@ -1,5 +1,12 @@
 # Getting Started with Create React App
 
+## ATTENTION
+
+The functionality is described in the e-mail (Clicking on the "Load more" button should display more images that haven't been loaded
+yet. Once the images already reach the end of the list, the "Load more" button should
+disappear.), it is not possible to implement as in the request provided(https://api.thecatapi.com/v1/images/search), there is a bug with pagination, the photo of cats never ends and at a certain moment they begin to duplicate with the advancement of pagination.
+I apologize for the incompletely implemented functionality of the website
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
