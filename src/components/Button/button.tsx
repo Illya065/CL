@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import {
   COLORS,
   FONT_FAMILY,
@@ -27,10 +28,12 @@ const StyledButton = styled.button`
   cursor: pointer;
   margin: 0 auto;
   transition: all 0.3s ease-in-out;
+
   &:hover {
     background-color: ${COLORS.WHITE};
     color: ${COLORS.BLACK};
   }
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;

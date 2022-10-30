@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { COLORS } from "../../constants/colors";
 import {
   FONT_FAMILY,
@@ -7,8 +8,8 @@ import {
   FONT_WEIGHT,
   LINE_HEIGHT,
 } from "../../constants/";
-import { PropsTypes } from "./pageTitle.types";
 import { ExtendedStyles } from "../../types/generalTypes";
+import { PropsTypes } from "./pageTitle.types";
 
 const Title = styled.h1`
   font-family: ${FONT_FAMILY.PRIMARY};

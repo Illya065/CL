@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import {
   COLORS,
   FONT_FAMILY,
@@ -41,7 +42,7 @@ const Selector = ({
   onChange,
   value,
 }: PropsTypes): JSX.Element => {
-  const options_list = options
+  const breeds_list: React.ReactNode | null = options
     ? options.map((option) => {
         return (
           <option key={option.id} value={option.id}>
@@ -54,9 +55,10 @@ const Selector = ({
   return (
     <Wrapper extended_styles={extended_styles}>
       <Label label="Breed" label_id="breed" />
-      <StyledSelect onChange={onChange} value={value || 0}>
+      <StyledSelect id="breed" onChange={onChange} value={value || 0}>
+        {/* Add default option */}
         <option value={0}>None</option>
-        {options_list}
+        {breeds_list}
       </StyledSelect>
     </Wrapper>
   );

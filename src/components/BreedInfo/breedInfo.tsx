@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { BREACKPOINTS, FONT_WEIGHT } from "../../constants";
 import Text from "../Text";
 import { PropsTypes } from "./breedInfo.types";
@@ -47,9 +48,10 @@ const Info = styled.ul`
 `;
 
 const BreedInfo = ({ img_url, breed_info }: PropsTypes): JSX.Element => {
-  const list =
+  const breed_detailed_info_list: React.ReactNode | null =
     breed_info && Object.keys(breed_info).length > 0
       ? Object.keys(breed_info).map((key, index) => {
+          // Check key validity
           const isKeyValid =
             key === "origin" ||
             key === "name" ||
@@ -70,7 +72,7 @@ const BreedInfo = ({ img_url, breed_info }: PropsTypes): JSX.Element => {
   return (
     <Block>
       <Image src={img_url || ""} alt="No Image" />
-      <Info>{list}</Info>
+      <Info>{breed_detailed_info_list}</Info>
     </Block>
   );
 };
